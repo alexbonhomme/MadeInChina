@@ -1,0 +1,5 @@
+mic_yc:
+    resource: "@MicYcBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
