@@ -1,0 +1,14 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: ns61486.ovh.net
+    database_port: '11033'
+    database_name: symfony
+    database_user: root
+    database_password: Uz42Dh
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: 5ab4fa34de14c1db6e887a7ffbcef8ef003bc06e
+    database_path: null
