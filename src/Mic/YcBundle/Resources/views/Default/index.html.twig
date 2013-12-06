@@ -13,9 +13,9 @@
 				<li class="active"><a href="#">Home</a></li>
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					<li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
-					<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+					<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
 				{% else %}
-					<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li><li><a href="{{ path('fos_user_registration_register') }}">S'enregistrer</a></li>
+					<li><a href="{{ path('fos_user_security_login') }}">Login</a></li><li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
 				{% endif %}
 			</ul>
 		</div>
@@ -27,7 +27,7 @@
 			<h1 class='text-center'>Customize your desires</h1>
 			<form name='formSearch' style='margin-top:60px' method='POST' action=''>
 				<div class="input-append" style='width:100%'>
-					<input class="span11" id="search" name="search" type="text" placeholder='<type> <color> <size> <brand>' style='height:60px;font-size: 22px;'>
+					<input class="span11" id="search" name="search" type="text" placeholder="I'm looking for ... to ..." style='height:60px;font-size: 22px;'>
 					<button class="btn" id='btVoiceReco' type="button" style='height:60px;' onClick='return toggleVoiceSearch()'><img src='https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif' alt='Microphone'></button>
 					<button class="btn" type="submit" style='height:60px;'>Search</button>
 				</div>
@@ -56,10 +56,9 @@
 	  }
 		
 		if (!('webkitSpeechRecognition' in window)) {
-		  //upgrade();
 		} else {
 		  var recognition = new webkitSpeechRecognition();
-		  recognition.lang = 'fr_FR';
+		  recognition.lang = 'en_US';
 		  recognition.continuous = true;
 		  recognition.interimResults = true;
 
