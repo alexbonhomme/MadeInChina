@@ -16,5 +16,23 @@ class DefaultController extends Controller
     {
         return array();
     }
+	
+    /**
+     * @Route("/results")
+     * @Template()
+     */
+    public function resultsAction()
+    {
+		$search = "";
+				
+		$request = $this->getRequest();
+		if( $request->getMethod() == 'POST' )
+		{
+			$search = $request->request->get('search');
+			
+		}
+
+        return array("search" => $search);
+    }
 
 }

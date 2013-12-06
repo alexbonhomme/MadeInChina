@@ -1,6 +1,5 @@
 mic_yc:
-    resource: "@MicYcBundle/Controller/"
-    type:     annotation
+    resource: "@MicYcBundle/Resources/config/routing.yml"
     prefix:   /
 
 fos_user_security:
