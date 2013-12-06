@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Product
 {
     /**
+     * @ORM\ManyToMany(targetEntity="Mic\YcBundle\Entity\Category", cascade={"persist"})
+     */
+    
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -42,21 +47,12 @@ class Product
      */
     private $price;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Mic\YcBundle\Entity\Category", cascade={"persist"})
-     */
     private $categories;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Mic\YcBundle\Entity\Filter", cascade={"persist"})
-     */
-    private $filters;
 
     public function __construct()
     {
         // Si vous aviez déjà un constructeur, ajoutez juste cette ligne :
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->filters = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -152,22 +148,6 @@ class Product
     public function getCategories()
     {
         return $this->categories;
-    }
-
-    public function addCFilter(\Mic\YcBundle\Entity\Filter $filter)
-    {
-        $this->filters[] = $filter;
-    }
-
-    public function removeFilter(\Mic\YcBundle\Entity\Filter $filter) // removeCategorie sans « s » !
-    {
-        // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
-        $this->filters->removeElement($filter);
-    }
-
-    public function getFilters()
-    {
-        return $this->filters;
     }
 
 }
