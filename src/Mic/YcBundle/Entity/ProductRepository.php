@@ -12,7 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
-	public function findWithFilters($for, $to, array $forFilters = array(), array $toFilters = array()) {
+	public function findWithFilters($for, $to = "", array $forFilters = array(), array $toFilters = array()) {
+		$qb = $this->createQueryBuilder('product');
+
+		$qb->where($qb->expr()->eq("product.name", "'$for'"));
 		
+		if(count($forFilters) > 0) {
+			$qb->join("product.filters", "filters");
+			
+			foreach($forFilters as $filtre) {
+				$qb->andWhere($qb->expr()->eq("filters.name", "'{$filtre['name']}'"));
+				$qb->andWhere($qb->expr()->eq("filters.value", "'{$filtre['value']}'"));
+			}
+		}
+
+		return $qb->getQuery()->getResult();
 	}
 }

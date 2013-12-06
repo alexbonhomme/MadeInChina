@@ -31,7 +31,6 @@ class DefaultController extends Controller
 		$search = "";
 		$results = array();
 		
-		$results[] = $productRepo->find(1);
 				
 		$request = $this->getRequest();
 		if($request->getMethod() == 'POST') {
@@ -41,17 +40,20 @@ class DefaultController extends Controller
 			preg_match("/I\'m looking for (.*) to (.*)/", $search, $matches);
 			
 			if(is_array($matches) && count($matches) > 0) {
-				echo "for = {$matches[1]} | to = {$matches[2]}";
-				
 				$filtresFor = array_filter(explode(" ", $matches[1]), "Mic\YcBundle\Controller\DefaultController::clearUselessWords");
 				$for = array_pop($filtresFor);
 				
-				var_dump($filtresFor);					
-				var_dump($for);					
+				$forFiltres = array();
+				
+				foreach($filtresFor as $filtre) {
+					if(in_array($filtre, array("black", "blue", "orange", "red", "green", "yellow")))
+						$forFiltres[] = array('name' => 'color', 'value' => $filtre);
+				}
+				
+				//var_dump($forFiltres);
+				
+				$results = $productRepo->findWithFilters($for, "", $forFiltres);		
 			}
-
-			print_r($matches);
-
 		}
 
         return array("search" => $search, "results" => $results);
