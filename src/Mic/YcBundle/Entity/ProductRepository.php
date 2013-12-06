@@ -12,4 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+	public function findWithFilters($for, $to, array $forFilters = array(), array $toFilters = array()) {
+		
+	}
 }

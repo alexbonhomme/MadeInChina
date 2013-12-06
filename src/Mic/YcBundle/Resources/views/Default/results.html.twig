@@ -5,8 +5,14 @@
 	<div class="row-fluid">
 		<div class="span3"></div>
 		<div class="span6">
-			<h1 class='text-center'>{{ search }}</h1>
-			</form>
+			<h1 class='text-center' style='margin-bottom:30px;'>{{ search }}</h1>
+			
+			<section>
+				<p class='text-left'>{{results|length}} result(s) found !</p>
+				{% for product in results %}
+					{{ include('MicYcBundle:Default:product.html.twig', { 'product': product }) }}
+				{% endfor %}
+			</section>
 		</div>
 		<div class="span3"></div>
 	</div>

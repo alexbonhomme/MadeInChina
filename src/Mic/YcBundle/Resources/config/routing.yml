@@ -1,4 +1,4 @@
-home:
+_home:
     pattern: /
     defaults: { _controller: MicYcBundle:Default:index }
 
