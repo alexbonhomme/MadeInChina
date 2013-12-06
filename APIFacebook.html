@@ -33,7 +33,7 @@
             query: 'SELECT name, categories FROM page WHERE page_id IN (SELECT page_id FROM page_fan WHERE uid = me())'
         },
         function(data) {
-            print 'FQL response: ' + JSON.stringify(data);
+            console.log('FQL response: ' + JSON.stringify(data));
         });
 	}, {scope: 'user_likes'});
   }
