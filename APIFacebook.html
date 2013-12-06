@@ -1,0 +1,43 @@
+<html>
+<head></head>
+<body>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+	  FB.init({
+	    appId      : '261711837316567',
+	    status     : true, // check login status
+	    cookie     : true, // enable cookies to allow the server to access the session
+	    xfbml      : true  // parse XFBML
+	  });
+
+	  testAPI();
+  };
+
+  // Load the SDK asynchronously
+  (function(d){
+   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement('script'); js.id = id; js.async = true;
+   js.src = "http://connect.facebook.net/en_US/all.js";
+   ref.parentNode.insertBefore(js, ref);
+  }(document));
+
+  // Here we run a very simple test of the Graph API after login is successful. 
+  // This testAPI() function is only called in those cases. 
+  function testAPI() {
+    console.log('Welcome! Fetching your information.... ');
+    FB.login(function(response) {
+	    FB.api({
+            method: 'fql.query',
+            query: 'SELECT name, categories FROM page WHERE page_id IN (SELECT page_id FROM page_fan WHERE uid = me())'
+        },
+        function(data) {
+            print 'FQL response: ' + JSON.stringify(data);
+        });
+	}, {scope: 'user_likes'});
+  }
+</script>
+
+</body>
+</html>
