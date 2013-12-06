@@ -6,11 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function testClearUselessWorlds()
+    public function testIndex()
     {
-        $string = "A big white pillow";
-		$stringExcepted = "big white pillow";
+        $client = static::createClient();
 
-        $this->assertEquals(Mic\YcBundle\Controller\DefaultController::clearUselessWorlds($string), $stringExcepted);
+        $crawler = $client->request('GET', '/hello/Fabien');
+
+        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
     }
 }
