@@ -1,0 +1,7 @@
+home:
+    pattern: /
+    defaults: { _controller: MicYcBundle:Default:index }
+
+results:
+   pattern:  /results
+   defaults: { _controller: MicYcBundle:Default:results }
